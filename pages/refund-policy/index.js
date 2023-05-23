@@ -10,7 +10,6 @@ import PolicyPage from "../../src/components/policy-page";
 import useGetPolicyPage from "../../src/api-manage/hooks/react-query/useGetPolicyPage";
 import { CustomStackFullWidth } from "../../src/styled-components/CustomStyles.style";
 import { Skeleton } from "@mui/material";
-import { useQuery } from "react-query";
 
 const Index = ({ configData }) => {
   const { t } = useTranslation();
@@ -42,7 +41,6 @@ export const getServerSideProps = async () => {
       headers: CustomHeader,
     }
   );
-
   const config = await configRes.json();
   return {
     props: {

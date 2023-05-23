@@ -24,7 +24,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import SplashScreen from "../src/splash-screen";
 import { useEffect } from "react";
 import DynamicFavicon from "../src/components/favicon/DynamicFavicon";
-import ScrollToTop from "../src/components/ScrollToTop";
 
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
@@ -34,14 +33,7 @@ const clientSideEmotionCache = createEmotionCache();
 function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout ?? ((page) => page);
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        cacheTime: 1000 * 60 * 5, // 5 minutes
-        staleTime: 1000 * 60 * 2, // 2 minutes
-      },
-    },
-  });
+  const queryClient = new QueryClient();
   const router = useRouter();
   //storing persisted data
   let persistor = persistStore(store);
@@ -65,7 +57,6 @@ function MyApp(props) {
                       <CssBaseline />
                       <Toaster position="top-center" />
                       <DynamicFavicon />
-
                       {getLayout(<Component {...pageProps} />)}
                     </RTL>
                   </ThemeProvider>

@@ -18,7 +18,7 @@ const Index = ({ configData }) => {
   const [page_limit, setPageLimit] = useState(10);
   const router = useRouter();
   //const { id } = router.query;
-  const id = router.query.id;
+  const id = router.query.id.split("-")[0];
   const [category_id, setCategoryId] = useState(id);
 
   const {

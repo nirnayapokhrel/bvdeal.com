@@ -9,6 +9,7 @@ import AuthGuard from "../../src/components/route-guard/AuthGuard";
 import UserLayout from "../../src/components/layout/UserLayout";
 import Profile from "../../src/components/profile";
 import Wishlists from "../../src/components/wishlist";
+import ZoneGuard from "../../components/route-guard/ZoneGuard";
 
 const Index = ({ configData }) => {
   const { t } = useTranslation();
@@ -20,7 +21,9 @@ const Index = ({ configData }) => {
       <MainLayout configData={configData}>
         <NoSsr>
           <AuthGuard from={router.pathname.replace("/", "")}>
-            <Wishlists configData={configData} t={t} />
+            <ZoneGuard>
+              <Wishlists configData={configData} t={t} />
+            </ZoneGuard>
           </AuthGuard>
         </NoSsr>
       </MainLayout>
@@ -29,6 +32,7 @@ const Index = ({ configData }) => {
 };
 
 export default Index;
+
 export const getServerSideProps = async () => {
   // const config = await ConfigApi.config()
   // const landingPageData = await landingPageApi.getLandingPageImages()

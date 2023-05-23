@@ -20,11 +20,6 @@ const Home = ({ configData }) => {
     } else {
     }
   }, [configData]);
-  let language_direction = undefined;
-  if (typeof window !== "undefined") {
-    language_direction = localStorage.getItem("language-setting");
-  }
-
   return (
     <>
       <CssBaseline />

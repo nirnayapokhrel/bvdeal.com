@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setConfigData } from "../src/redux/slices/configData";
 import Router from "next/router";
 import MetaData from "./meta-data";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Root = (props) => {
   const { configData, landingPageData } = props;
@@ -13,7 +14,7 @@ const Root = (props) => {
   useEffect(() => {
     if (configData) {
       if (configData.length === 0) {
-        Router.push("/404");
+        Router.push("/404", undefined, { shallow: true });
       } else {
         dispatch(setConfigData(configData));
       }
